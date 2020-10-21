@@ -2,6 +2,8 @@ package quizStuff;
 
 import java.util.*;
 
+import sort.HeapSort;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -13,6 +15,7 @@ public class Main {
 		 * Given an array of integers, return alternating peaks and valleys
 		 */
 		
+		//For now, assume array is sorted
 		int n = 10;
 		int[] arr = new int[n];
 		
@@ -22,8 +25,10 @@ public class Main {
 		System.out.println("Unsorted array");
 		printArray(arr);
 		
-		System.out.println("\nAssume array is sorted using mergeSort");
-		Arrays.sort(arr); //this will be assumed as merge sort
+		System.out.println("\nSorted array using heapsort from another project");
+		HeapSort.sort(arr);
+		//if this cannot run for you, uncomment the next line
+		//Arrays.sort(arr);
 		printArray(arr);
 		
 		double start = System.nanoTime();
