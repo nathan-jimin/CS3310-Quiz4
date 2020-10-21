@@ -2,6 +2,8 @@ package quizStuff;
 
 import java.util.*;
 
+import sort.HeapSort;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -23,8 +25,10 @@ public class Main {
 		System.out.println("Unsorted array");
 		printArray(arr);
 		
-		System.out.println("\nSorted array");
-		Arrays.sort(arr);
+		System.out.println("\nSorted array using heapsort from another project");
+		HeapSort.sort(arr);
+		//if this cannot run for you, uncomment the next line
+		//Arrays.sort(arr);
 		printArray(arr);
 		
 		double start = System.nanoTime();
