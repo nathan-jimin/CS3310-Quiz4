@@ -25,13 +25,14 @@ public class Main {
 		System.out.println("Unsorted array");
 		printArray(arr);
 		
+		double start = System.nanoTime();
 		System.out.println("\nSorted array using heapsort from another project");
 		HeapSort.sort(arr);
 		//if this cannot run for you, uncomment the next line
 		//Arrays.sort(arr);
 		printArray(arr);
 		
-		double start = System.nanoTime();
+		
 		//simple solution: create another array
 		int[] result = new int[n];
 		int j = n-1;
