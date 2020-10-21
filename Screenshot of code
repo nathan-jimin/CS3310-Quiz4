@@ -13,7 +13,6 @@ public class Main {
 		 * Given an array of integers, return alternating peaks and valleys
 		 */
 		
-		//For now, assume array is sorted
 		int n = 10;
 		int[] arr = new int[n];
 		
@@ -23,8 +22,8 @@ public class Main {
 		System.out.println("Unsorted array");
 		printArray(arr);
 		
-		System.out.println("\nSorted array");
-		Arrays.sort(arr);
+		System.out.println("\nAssume array is sorted using mergeSort");
+		Arrays.sort(arr); //this will be assumed as merge sort
 		printArray(arr);
 		
 		double start = System.nanoTime();
