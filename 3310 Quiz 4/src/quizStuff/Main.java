@@ -1,0 +1,98 @@
+package quizStuff;
+
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		/*
+		 * Peaks and Valleys
+		 * Peak = element greater than or equal to adjacent integers
+		 * Valley = element less than or equal to adjacent integers
+		 * Given an array of integers, return alternating peaks and valleys
+		 */
+		
+		//For now, assume array is sorted
+		int n = 10;
+		int[] arr = new int[n];
+		
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = (int)(Math.random() * n);
+		}
+		System.out.println("Unsorted array");
+		printArray(arr);
+		
+		System.out.println("\nSorted array");
+		Arrays.sort(arr);
+		printArray(arr);
+		
+		double start = System.nanoTime();
+		//simple solution: create another array
+		int[] result = new int[n];
+		int j = n-1;
+		
+		//from 0, place max elements from arr and increment by 2
+		for (int i = 0; i < n; i+=2) {
+			result[i] = arr[j];
+			j--;
+		}
+		
+		j = 0;
+		//from 1, place min elements from arr and increment by 2
+		for (int i = 1; i < n; i+=2) {
+			result[i] = arr[j];
+			j++;
+		}
+		System.out.println("\nArray of PEAKS and VALLEYS");
+		printArray(result);
+		double end = System.nanoTime();
+		System.out.println("Execution time = " + (end - start) + " nanoseconds");
+		
+		System.out.println("\n\nBuild Order of projects: {{4,3}, {4}, {}, {2}, {}, {1}, {5, 3}, {0}}");
+
+		int [][] example = {{4,3}, {4}, {}, {2}, {}, {1}, {5, 3}, {0}};
+		start = System.nanoTime();
+		System.out.println(buildOrder(example));
+		end = System.nanoTime();
+		System.out.println("Execution time = " + (end - start) + " nanoseconds");
+	}
+	
+	/*
+	 * Example
+	 * {{4}, {4}, {}, {2}, {}, {1}}
+	 */
+
+	public static List<Integer> buildOrder(int [][] packages) {
+		Set<Integer> temp = new HashSet<Integer>();
+		Set<Integer> perm = new HashSet<Integer>();
+		List<Integer> result = new LinkedList<Integer>();
+		for (int i = 0; i < packages.length; i++) {
+			if (!perm.contains(i)) {
+				visit(i, packages, temp, perm, result);
+			}
+		}
+		return result;
+	}
+	
+	public static void visit(int project, int [][] packages, Set<Integer> temp,
+					  Set<Integer> perm, List<Integer> results) {
+		if (temp.contains(project)) throw new RuntimeException();
+		if (!perm.contains(project)) {
+			temp.add(project);
+			for (int i : packages[project]) {
+				visit(i, packages, temp, perm, results);
+			}
+			perm.add(project);
+			temp.remove(project);
+			results.add(project);
+		}
+	}
+	
+	static void printArray(int[] arr) {
+		for (int i = 0; i < arr.length; i ++) {
+			System.out.print(arr[i] + "\t");
+		}
+		System.out.println();
+	}
+}
